@@ -15,17 +15,17 @@
 
 
 
-<meta name="description" content="利用scp实现数据自动远程备份业务背景：​    客户ERP生产系统安排了数据库定时备份计划，每周五一次全备，每天一次增量备份；数据存储于本机/backup目录，此生产机半年内出现过两次宕机，一次磁盘阵列故障，一次启动分区表丢失；">
+<meta name="description" content="利用scp实现数据自动远程备份业务背景：​    客户ERP生产系统安排了数据库定时备份计划，每周五一次全备，每天一次增量备份；数据存储于本机/backup目录，此生产机半年内出现过两次宕机，一次磁盘阵列故障，一次启动分区表丢失；若只在服务器本机上备份数据，没有别的备份，一旦该机器硬盘再出现故障，数据的恢复将会耗时耗力，甚至严重时将彻底破坏而无法重现天日。远程手动备份数据费时费力且不及时，到机房现">
 <meta property="og:type" content="article">
 <meta property="og:title" content="利用scp实现数据自动远程备份">
-<meta property="og:url" content="https://iamli.net/2019/09/07/利用scp实现数据自动远程备份/index.html">
+<meta property="og:url" content="https://iamli.net/2019/09/利用scp实现数据自动远程备份/index.html">
 <meta property="og:site_name" content="木子@四川">
-<meta property="og:description" content="利用scp实现数据自动远程备份业务背景：​    客户ERP生产系统安排了数据库定时备份计划，每周五一次全备，每天一次增量备份；数据存储于本机/backup目录，此生产机半年内出现过两次宕机，一次磁盘阵列故障，一次启动分区表丢失；">
+<meta property="og:description" content="利用scp实现数据自动远程备份业务背景：​    客户ERP生产系统安排了数据库定时备份计划，每周五一次全备，每天一次增量备份；数据存储于本机/backup目录，此生产机半年内出现过两次宕机，一次磁盘阵列故障，一次启动分区表丢失；若只在服务器本机上备份数据，没有别的备份，一旦该机器硬盘再出现故障，数据的恢复将会耗时耗力，甚至严重时将彻底破坏而无法重现天日。远程手动备份数据费时费力且不及时，到机房现">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-09-08T09:26:12.645Z">
+<meta property="og:updated_time" content="2019-09-08T14:58:50.267Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="利用scp实现数据自动远程备份">
-<meta name="twitter:description" content="利用scp实现数据自动远程备份业务背景：​    客户ERP生产系统安排了数据库定时备份计划，每周五一次全备，每天一次增量备份；数据存储于本机/backup目录，此生产机半年内出现过两次宕机，一次磁盘阵列故障，一次启动分区表丢失；">
+<meta name="twitter:description" content="利用scp实现数据自动远程备份业务背景：​    客户ERP生产系统安排了数据库定时备份计划，每周五一次全备，每天一次增量备份；数据存储于本机/backup目录，此生产机半年内出现过两次宕机，一次磁盘阵列故障，一次启动分区表丢失；若只在服务器本机上备份数据，没有别的备份，一旦该机器硬盘再出现故障，数据的恢复将会耗时耗力，甚至严重时将彻底破坏而无法重现天日。远程手动备份数据费时费力且不及时，到机房现">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -178,12 +178,6 @@
                     <nav class="header-nav">
                         <ul class="social">
                             
-                                <a class="fa Email" href="mailto:123@123.com" title="Email"></a>
-                            
-                                <a class="fa GitHub" href="#" title="GitHub"></a>
-                            
-                                <a class="fa RSS" href="/atom.xml" title="RSS"></a>
-                            
                         </ul>
                     </nav>
                 </section>
@@ -256,12 +250,6 @@
             <nav class="header-nav">
                         <ul class="social">
                             
-                                <a class="fa Email" target="_blank" href="mailto:123@123.com" title="Email"></a>
-                            
-                                <a class="fa GitHub" target="_blank" href="#" title="GitHub"></a>
-                            
-                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
-                            
                         </ul>
             </nav>
         </header>                
@@ -271,7 +259,7 @@
       <div class="body-wrap"><article id="post-利用scp实现数据自动远程备份" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/09/07/利用scp实现数据自动远程备份/" class="article-date">
+      <a href="/2019/09/利用scp实现数据自动远程备份/" class="article-date">
       <time datetime="2019-09-07T13:59:54.000Z" itemprop="datePublished">2019-09-07</time>
 </a>
 
@@ -304,7 +292,9 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h1 id="利用scp实现数据自动远程备份"><a href="#利用scp实现数据自动远程备份" class="headerlink" title="利用scp实现数据自动远程备份"></a>利用scp实现数据自动远程备份</h1><h3 id="业务背景："><a href="#业务背景：" class="headerlink" title="业务背景："></a>业务背景：</h3><p>​    客户ERP生产系统安排了数据库定时备份计划，每周五一次全备，每天一次增量备份；数据存储于本机/backup目录，此生产机半年内出现过两次宕机，一次磁盘阵列故障，一次启动分区表丢失；<a id="more"></a>若只在服务器本机上备份数据，没有别的备份，一旦该机器硬盘再出现故障，数据的恢复将会耗时耗力，甚至严重时将彻底破坏而无法重现天日。远程手动备份数据费时费力且不及时，到机房现场备份再取回数据也比较麻烦，最好的方法就是通过脚本实现远程自动备份。</p>
+        <h1 id="利用scp实现数据自动远程备份"><a href="#利用scp实现数据自动远程备份" class="headerlink" title="利用scp实现数据自动远程备份"></a>利用scp实现数据自动远程备份</h1><h3 id="业务背景："><a href="#业务背景：" class="headerlink" title="业务背景："></a>业务背景：</h3><p>​    客户ERP生产系统安排了数据库定时备份计划，每周五一次全备，每天一次增量备份；数据存储于本机/backup目录，此生产机半年内出现过两次宕机，一次磁盘阵列故障，一次启动分区表丢失；若只在服务器本机上备份数据，没有别的备份，一旦该机器硬盘再出现故障，数据的恢复将会耗时耗力，甚至严重时将彻底破坏而无法重现天日。远程手动备份数据费时费力且不及时，到机房现场备份再取回数据也比较麻烦，最好的方法就是通过脚本实现远程自动备份。</p>
+<a id="more"></a>
+
 <h3 id="解决方案："><a href="#解决方案：" class="headerlink" title="解决方案："></a>解决方案：</h3><h4 id="1-配置SSH证书登录验证"><a href="#1-配置SSH证书登录验证" class="headerlink" title="1. 配置SSH证书登录验证"></a>1. 配置SSH证书登录验证</h4><p>​    ERP生产机A（192.168.1.208）和数据存储服务器B（192.168.1.233）两台LINUX服务器，现在需要在A（192.168.1.208）机上用root登陆B（192.168.1.233）机，并且不需要输入密码；</p>
 <h5 id="1-1在A（192-168-1-208）机上执行以下命令生成钥匙对："><a href="#1-1在A（192-168-1-208）机上执行以下命令生成钥匙对：" class="headerlink" title="1.1在A（192.168.1.208）机上执行以下命令生成钥匙对："></a>1.1在A（192.168.1.208）机上执行以下命令生成钥匙对：</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>ssh-keygen -t rsa </span><br><span class="line">Generating public/private rsakeypair. </span><br><span class="line">Enter filein which to save the key (/root/.ssh/id_rsa): 直接回车 </span><br><span class="line">Enter passphrase(empty for no passphrase):直接回车</span><br><span class="line">Enter same passphrase again:直接回车 </span><br><span class="line">Your identification has been saved in /root/.ssh/id_rsa. </span><br><span class="line">Your public keyhas been saved in /root/.ssh/id_rsa.pub. </span><br><span class="line">The key fingerprint is:42:92:44:b8:4e:fd:47:ff:95:c4:6f:47:8d:48:c5:02</span><br></pre></td></tr></table></figure>
 
@@ -328,13 +318,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2019/09/07/利用scp实现数据自动远程备份/">利用scp实现数据自动远程备份</a></p>
+        <p><span>本文标题:</span><a href="/2019/09/利用scp实现数据自动远程备份/">利用scp实现数据自动远程备份</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">木子@四川</a></p>
         <p><span>发布时间:</span>2019-09-07, 21:59:54</p>
-        <p><span>最后更新:</span>2019-09-08, 17:26:12</p>
+        <p><span>最后更新:</span>2019-09-08, 22:58:50</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2019/09/07/利用scp实现数据自动远程备份/" title="利用scp实现数据自动远程备份">https://iamli.net/2019/09/07/利用scp实现数据自动远程备份/</a>
-            <span class="copy-path" data-clipboard-text="原文: https://iamli.net/2019/09/07/利用scp实现数据自动远程备份/　　作者: 木子@四川" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2019/09/利用scp实现数据自动远程备份/" title="利用scp实现数据自动远程备份">https://iamli.net/2019/09/利用scp实现数据自动远程备份/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://iamli.net/2019/09/利用scp实现数据自动远程备份/　　作者: 木子@四川" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -416,7 +406,7 @@
         
     </div>
 
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/09/07/利用scp实现数据自动远程备份/">利用scp实现数据自动远程备份</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/09/利用scp实现数据自动远程备份/">利用scp实现数据自动远程备份</a></li></ul>
 
 
 
