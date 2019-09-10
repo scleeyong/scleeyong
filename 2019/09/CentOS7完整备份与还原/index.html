@@ -104,7 +104,7 @@
 <meta property="og:site_name" content="木子@四川">
 <meta property="og:description" content="业务背景​    在一个项目中的ESXi6.5的虚拟化环境中，服务器有六块硬盘分成了两个磁盘组，前两块硬盘做成了Raid1安装ESXi系统，后四块数据盘被做成了Raid0（在我以后的项目中，哪个敢再把数据盘做成Raid0直接给老子滚蛋）；为降低后续数据丢失风险，增加了两块硬盘做成Raid1准备将数据盘上的虚拟机转移到新的硬盘上后，将Raid0重新做成Raid1；在迁移虚拟机过程中提示磁盘空间不够，">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-09-10T15:26:24.220Z">
+<meta property="og:updated_time" content="2019-09-10T15:33:32.711Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CentOS7完整备份与还原">
 <meta name="twitter:description" content="业务背景​    在一个项目中的ESXi6.5的虚拟化环境中，服务器有六块硬盘分成了两个磁盘组，前两块硬盘做成了Raid1安装ESXi系统，后四块数据盘被做成了Raid0（在我以后的项目中，哪个敢再把数据盘做成Raid0直接给老子滚蛋）；为降低后续数据丢失风险，增加了两块硬盘做成Raid1准备将数据盘上的虚拟机转移到新的硬盘上后，将Raid0重新做成Raid1；在迁移虚拟机过程中提示磁盘空间不够，">
@@ -404,7 +404,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-09-10 23:26:24" itemprop="dateModified" datetime="2019-09-10T23:26:24+08:00">2019-09-10</time>
+                <time title="修改时间：2019-09-10 23:33:32" itemprop="dateModified" datetime="2019-09-10T23:33:32+08:00">2019-09-10</time>
               
             
           </span>
@@ -457,6 +457,7 @@
 
       
         <h3 id="业务背景"><a href="#业务背景" class="headerlink" title="业务背景"></a>业务背景</h3><p>​    在一个项目中的ESXi6.5的虚拟化环境中，服务器有六块硬盘分成了两个磁盘组，前两块硬盘做成了Raid1安装ESXi系统，后四块数据盘被做成了Raid0（<strong>在我以后的项目中，哪个敢再把数据盘做成Raid0直接给老子滚蛋</strong>）；为降低后续数据丢失风险，增加了两块硬盘做成Raid1准备将数据盘上的虚拟机转移到新的硬盘上后，将Raid0重新做成Raid1；在迁移虚拟机过程中提示磁盘空间不够，检查发现迁移后虚拟机精简置备自动变成了厚置备。咋整？1、再加硬盘；2、只迁移虚拟机里面的数据。</p>
+<a id="more"></a>
 <h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><p>​    只迁移虚拟机里面的数据，由于安装了许多软件，因此采用对linux系统进行完整备份。</p>
 <h3 id="步骤："><a href="#步骤：" class="headerlink" title="步骤："></a>步骤：</h3><ol>
 <li>安装一台新服务器，保持与源服务器系统版本、磁盘挂载一致。</li>
